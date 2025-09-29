@@ -1,0 +1,195 @@
+/* Basic reset and body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.calculator {
+    background-color: #e8ecef;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 320px;
+}
+
+/* Screen styles */
+.screen {
+    background-color: #2d3748;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    min-height: 60px;
+    color: #a0aec0;
+    font-size: 24px;
+    text-align: right;
+}
+
+.screen-content h5 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+/* Main calculator grid layout */
+.calculator {
+    display: grid;
+    grid-template-areas:
+        "screen screen"
+        "top-ops top-ops"
+        "numbers operations";
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+}
+
+.screen {
+    grid-area: screen;
+}
+
+/* Top operations row */
+.operations-buttons {
+    grid-area: top-ops;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    height: 60px;
+}
+
+.operations-buttons > div {
+    display: contents;
+}
+
+/* Parentheses buttons */
+.Parentheses {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+/* Right side operations */
+.operation {
+    grid-area: operations;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr); /* Changed to 5 rows for equals button */
+    gap: 8px;
+}
+
+.operation > div {
+    height: 60px;
+}
+
+/* Numbers grid */
+.numbers.button {
+    grid-area: numbers;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr); /* Only 4 rows now */
+    gap: 8px;
+    height: calc(4 * 60px + 3 * 8px);
+}
+
+/* Button base styles */
+button {
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    aspect-ratio: 1;
+}
+
+/* Ensure all containers have exact same sizing */
+.operations-buttons button,
+.operation button,
+.numbers button {
+    height: 60px;
+    min-width: 0;
+}
+
+/* Number buttons - soft blue */
+.numbers button {
+    background-color: #bee3f8;
+    color: #2b6cb0;
+}
+
+.numbers button:hover {
+    background-color: #90cdf4;
+    transform: scale(1.02);
+}
+
+/* Operation buttons (+, -, *, /) - soft green */
+.operation button {
+    background-color: #9ae6b4;
+    color: #276749;
+}
+
+.operation button:hover {
+    background-color: #68d391;
+    transform: scale(1.02);
+}
+
+/* Equals button - soft orange (NOW IN OPERATIONS) */
+.equation button {
+    background-color: #fbd38d;
+    color: #dd6b20;
+}
+
+.equation button:hover {
+    background-color: #f6ad55;
+    transform: scale(1.02);
+}
+
+/* Top row buttons */
+.clear button {
+    background-color: #fed7d7;
+    color: #c53030;
+}
+
+.clear button:hover {
+    background-color: #feb2b2;
+    transform: scale(1.02);
+}
+
+.Parentheses button {
+    background-color: #e9d8fd;
+    color: #6b46c1;
+}
+
+.Parentheses button:hover {
+    background-color: #d6bcfa;
+    transform: scale(1.02);
+}
+
+.percent button {
+    background-color: #fbb6ce;
+    color: #b83280;
+}
+
+.percent button:hover {
+    background-color: #f687b3;
+    transform: scale(1.02);
+}
+
+/* Zero button spans 2 columns */
+.numbers button:nth-last-child(2) { /* Changed selector since equals is gone */
+    grid-column: span 2;
+    aspect-ratio: 2;
+}
+
+/* Perfect vertical alignment */
+.operation {
+    height: calc(5 * 60px + 4 * 8px); /* Updated for 5 rows */
+}
